@@ -55,7 +55,7 @@ namespace AdminPanelTask.Data
                 RecordsTotal = totalCount,
                 RecordsFiltered = totalCount,
                 Data = employees.ToArray(),
-                Columns = tableParams.Columns
+                
 
             };
         }
