@@ -1,0 +1,54 @@
+﻿
+
+<link href="~/lib/datatables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<div class="container">
+    <h3 class="text-primary">Employees</h3>
+    <hr />
+    <a class="btn btn-primary float-right" asp-action="New" asp-controller="Employees">Create New Employee</a>
+   
+
+    <table id="Employees" class="table table-striped table-bordered dt-responsive nowrap">
+        <thead>
+            <tr>
+
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Company</th>
+
+
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{ 
+
+
+   <script type="text/javascript">
+
+       $(document).ready(function () {
+           $('#Employees').DataTable({
+               "serverSide": true,
+               "filter": true,
+               ajax: {
+                   url: "/api/employees",
+                   type: "GET",
+                   datatype: "json",
+                   dataSrc: ""
+               },            
+               columns: [
+                   { data: "id",   name:"Id" , "autowidth": true },
+                   { data: "name", name : "Name" ,"autowidth": true },
+                   { data: "email", name: "Email", "autowidth": true },
+                   { data: "company.name", name: "Company", "autowidth": true }
+
+               ]
+           });
+       });
+   </script>
+
+    <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.js"></script>
+
+}
